@@ -1,77 +1,52 @@
 package QueueImplWithLinkedList;
 
+//A class to represent a queue 
+//The queue, front stores the front node of LinkList 
+//and rear stores the last node of LinkedList 
 public class QueueImpl {
 	
-	public static int front=-1, rear = -1;
-	public static Object[] queue;
+	QueueNode front, rear;
 	
-	QueueImpl(int capacity){
-        queue = new Object[capacity]; 
+	QueueImpl(){
+		
+        this.front = this.rear = null; 
 	}
 	
-	public static boolean isEmptyList(){
-		if(rear ==-1)
+	public boolean isQueueEmpty(){
+		if(this.rear == null)
 			return true;
 		return false;
 	}
 	
-	public static boolean isFull(){
-		if (rear==queue.length-1)
-			return true;
-		return false;
-	}
 	
 	// function to insert an element 
     // at the rear of the queue
-	public static boolean push(Object data){
-		if (isFull()) {
-			return false;
-		}
-		else if(isEmptyList()){
-			front = 0;
-		}
-		rear++;
-		queue[rear] = data;
-		return true;
+	public void push(Object data){
+		
+		// Create a new LinkedList node 
+		QueueNode temp = new QueueNode(data);
+		
+		// If queue is empty, then new node is front and rear both
+		if(isQueueEmpty())
+			this.front = temp;
+		else
+			this.rear.next = temp;
+		this.rear = temp;
 	}
 	
-	// function to delete an element 
-    // from the front of the queue 
-	public static void pull(){
+	public void pull(){
 		
-		if(isEmptyList()){
+		//check if linked list is empty then return
+		if (isQueueEmpty())
 			return;
-		}
-		else if(front==0 && rear==0){
-			front--;
-		}
+		else if(this.front.next == null)
+			this.front = this.rear = null;
 		else{
-			for (int i = 0; i <= rear - 1; i++) { 
-                queue[i] = queue[i + 1]; 
-            } 
-  
+			// put next node of front as a key of front 
+			this.front.key = this.front.next.key;
+			this.front.next = this.front.next.next;
 		}
-		 // store 0 at rear indicating there's no element 
-        queue[rear] = 0; 
 
-        // decrement rear 
-        rear--;
-		
-	}
-	
-	public void displayQueue(){
-		
-		int i; 
-		System.out.println();
-        if (isEmptyList()) { 
-            System.out.printf("\nQueue is Empty\n"); 
-            return; 
-        } 
-  
-        // traverse front to rear and print elements 
-        for (i = front; i <= rear; i++) { 
-            System.out.printf("Queue is: %d <-- ", queue[i]); 
-        } 
 	}
 	
 }
