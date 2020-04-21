@@ -1,4 +1,4 @@
-package QueueImplWithArray;
+package QueueImplWithLinkedList;
 
 public class QueueTest {
 	
