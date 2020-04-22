@@ -5,7 +5,7 @@ package QueueImplWithLinkedList;
 //and rear stores the last node of LinkedList 
 public class QueueImpl {
 	
-	QueueNode front, rear;
+	Node front, rear;
 	
 	QueueImpl(){
 		
@@ -24,7 +24,7 @@ public class QueueImpl {
 	public void push(Object data){
 		
 		// Create a new LinkedList node 
-		QueueNode temp = new QueueNode(data);
+		Node temp = new Node(data);
 		
 		// If queue is empty, then new node is front and rear both
 		if(isQueueEmpty())
