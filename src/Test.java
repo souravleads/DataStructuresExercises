@@ -12,7 +12,7 @@ public class Test {
 		for (int i : a) {
 			if (i<a.length/2) {
 				
-				
+				System.out.println("***");
 			}
 			
 		}
